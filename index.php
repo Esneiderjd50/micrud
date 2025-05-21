@@ -7,6 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body class="w-full h-screen bg-neutral-800 flex items-center justify-center">
+    
 
     <form
         action="login.php"
@@ -26,7 +27,7 @@
 
         <label for="">correo</label>
         <input
-            type="text"
+            type="email"
             placeholder="correo"
             name="correo"
             class="bg-neutral-300 px-4 py-2 rounded"
@@ -45,7 +46,7 @@
 
         <label for="">Teléfono</label>
         <input
-            type="text"
+            type="number"
             placeholder="Teléfono"
             name="telefono"
             class="bg-neutral-300 px-4 py-2 rounded"
