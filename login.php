@@ -7,8 +7,8 @@ $db = 'zulia';
 
 $conexion = new mysqli($servidor, $nombreusuario, $password, $db);
 
-if($conexion-> connect_error){
-    die("Conexión fallida: " . $conexion-> connect_error);
+if ($conexion->connect_error) {
+    die("Conexión fallida: " . $conexion->connect_error);
 }
 
 
@@ -26,50 +26,44 @@ if (
     $sql = "INSERT INTO user (nombre, correo, contraseña, telefono) VALUES ('$name', '$correo', '$contraseña', '$phone')";
 
     if ($conexion->query($sql) == true) {
-      return header("Location: guardado.php");
-      exit();
-
+        return header("Location: guardado.php");
+        exit();
     } else {
         die("Error al insertar datos: " . $conexion->error);
     }
-
 }
 
-     if(isset($_POST['borrar'])){
-                $borrar = $_POST['borrar'];
-                
-                $sql = "INSERT INTO user(borrar, completado)
+if (isset($_POST['borrar'])) {
+    $borrar = $_POST['borrar'];
+
+    $sql = "INSERT INTO user(borrar, completado)
                  VALUES('$borrar', false)";
 
-                if($conexion->query($sql) === true){
-                  
-                }else{
-                    die("Error al insertar datos: " . $conexion->error);
-                } 
-            }else if(isset($_POST['completar'])){
-                $id = $_POST['completar'];
+    if ($conexion->query($sql) === true) {
+    } else {
+        die("Error al insertar datos: " . $conexion->error);
+    }
+} else if (isset($_POST['completar'])) {
+    $id = $_POST['completar'];
 
-                $sql = "UPDATE user SET completado = 1 WHERE id = $id";
+    $sql = "UPDATE user SET completado = 1 WHERE id = $id";
 
-                if($conexion->query($sql) === true){
-                 
-                }else{
-                    die("Error al actualizar datos: " . $conexion->error);
-                } 
-            }else if(isset($_POST['eliminar'])){
-                $id = $_POST['eliminar'];
+    if ($conexion->query($sql) === true) {
+    } else {
+        die("Error al actualizar datos: " . $conexion->error);
+    }
+} else if (isset($_POST['eliminar'])) {
+    $id = $_POST['eliminar'];
 
-                $sql = "DELETE FROM user WHERE id = $id";
+    $sql = "DELETE FROM user WHERE id = $id";
 
-                if($conexion->query($sql) === true){
-                    echo "<h1>Se eliminó correctamente</h1>";
-                }else{
-                    die("Error al actualizar datos: " . $conexion->error);
-                } 
-                    header("Location: user.php");
-                    exit();
-            }
+    if ($conexion->query($sql) === true) {
+        echo "<h1>Se eliminó correctamente</h1>";
+    } else {
+        die("Error al actualizar datos: " . $conexion->error);
+    }
+    header("Location: user.php");
+    exit();
+}
 
-                 $conexion->close();
-
-?>
+$conexion->close();
